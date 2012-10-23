@@ -1,12 +1,13 @@
 Python HPK client.
 
+Forked from https://github.com/dgladkov/python-hkp
+
+The reason for this fork is to add the ability to query a keyserver for a key 
+using only the keyid.
+
 Installing:
 
 $ [sudo] python setup.py install
-
-Uninstalling:
-
-$ [sudo] pip uninstall python-hkp
 
 Usage example, searching:
 
