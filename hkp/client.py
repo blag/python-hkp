@@ -41,21 +41,23 @@ class Key(object):
         self.host = host
         self.port = port
         self.keyid = keyid
-        self.creation_date = datetime.fromtimestamp(int(creation_date))
+        self.algo = algo
+
+        if creation_date:
+            self.creation_date = datetime.fromtimestamp(int(creation_date))
 
         if expiration_date:
             self.expiration_date = datetime.fromtimestamp(int(expiration_date))
-        else:
-            self.expiration_date = None
 
         self.revoked, self.disabled, self.expired = [False] * 3
 
-        if 'r' in flags:
-            self.revoked = True
-        if 'd' in flags:
-            self.disabled = True
-        if 'e' in flags:
-            self.expired = True
+        if flags:
+            if 'r' in flags:
+                self.revoked = True
+            if 'd' in flags:
+                self.disabled = True
+            if 'e' in flags:
+                self.expired = True
 
         self.identities = []
 
