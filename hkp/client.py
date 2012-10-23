@@ -32,8 +32,8 @@ class Key(object):
     _begin_header = '-----BEGIN PGP PUBLIC KEY BLOCK-----'
     _end_header = '-----END PGP PUBLIC KEY BLOCK-----'
 
-    def __init__(self, host, port, keyid, algo, keylen,
-                 creation_date, expiration_date, flags):
+    def __init__(self, host, port, keyid, algo=None, keylen=None,
+                 creation_date=None, expiration_date=None, flags=None):
         """
         Takes keyserver host and port used to look up ASCII armored key, and
         data as it is present in search query result.
@@ -41,9 +41,6 @@ class Key(object):
         self.host = host
         self.port = port
         self.keyid = keyid
-        algo = int(algo)
-        self.algo = ALGORITHMS.get(algo, algo)
-        self.key_length = int(keylen)
         self.creation_date = datetime.fromtimestamp(int(creation_date))
 
         if expiration_date:
